@@ -1,3 +1,4 @@
+# Linux & Windows
 1. Install PyTorch through Anaconda https://pytorch.org/get-started/locally/
 2. Install Rust through Rustup https://rustup.rs/
 3. Install CMake https://cmake.org/
@@ -10,3 +11,11 @@
     1. Source `set_env.sh`, which contains environment variables needed by the build system and also for execution
     2. Run `cargo run` to build and run the executor
 
+# Windows
+You can use Pip instead
+Make sure to have the latest CMake installed
+Open Developer PowerShell for VS 2019
+Pass `-G "Visual Studio 16 2019"` to cmake
+Open the solution, and make sure to build for release
+
+When building the executor, do not do so from Developer PowerShell, rather from regular PowerShell

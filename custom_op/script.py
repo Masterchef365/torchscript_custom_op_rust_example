@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import torch
-torch.ops.load_library("build/libtest_op.so")
+import platform
+if platform.system() == "Windows":
+    torch.ops.load_library("build\\Release\\test_op.dll")
+else:
+    torch.ops.load_library("build/libtest_op.so")
 
 
 class MyCell(torch.nn.Module):
