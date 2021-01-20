@@ -9,4 +9,4 @@ TORCH_LIBRARY(my_ops, m) {
     m.def("test_op", test_op);
 }
 
-extern "C" void test_library() { std::cout << "Custom op loaded" << std::endl; }
+extern "C" void __declspec( dllexport ) test_library() { std::cout << "Custom op loaded" << std::endl; }
