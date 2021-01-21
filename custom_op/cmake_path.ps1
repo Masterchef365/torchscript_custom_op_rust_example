@@ -1,0 +1,1 @@
+cmake -DCMAKE_PREFIX_PATH="$(python -c 'import torch.utils; print(torch.utils.cmake_prefix_path)')" -G "Visual Studio 16 2019" ..

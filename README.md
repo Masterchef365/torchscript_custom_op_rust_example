@@ -12,10 +12,4 @@
     2. Run `cargo run` to build and run the executor
 
 # Windows
-You can use Pip instead
-Make sure to have the latest CMake installed
-Open Developer PowerShell for VS 2019
-Pass `-G "Visual Studio 16 2019"` to cmake
-Open the solution, and make sure to build for release
-
-When building the executor, do not do so from Developer PowerShell, rather from regular PowerShell
+Pip seems to work okay on Windows. Make sure to have the latest CMake installed. Open Developer PowerShell for VS 2019. Pass `-G "Visual Studio 16 2019"` to cmake, and open the solution. Make sure to build for release. When building the executor, do not do so from Developer PowerShell, rather from regular PowerShell
