@@ -7,6 +7,8 @@
 //#include "sampling/sampling.hpp"
 //#include "voxelization/vox.hpp"
 
+extern "C" void __declspec( dllexport ) test_library() { std::cout << "Custom op loaded" << std::endl; }
+
 TORCH_LIBRARY(_pvcnn_backend, m) {
   //m.def("gather_features_forward", &gather_features_forward);
   //m.def("gather_features_backward", &gather_features_backward);

@@ -1,7 +1,12 @@
 use anyhow::Result;
 use tch::{IValue, Tensor};
 
+extern "C" {
+    fn test_library();
+}
+
 fn main() -> Result<()> {
+    unsafe { test_library(); }
     let device = match tch::Cuda::is_available() {
         true => tch::Device::Cuda(1),
         false => {
@@ -16,7 +21,9 @@ fn main() -> Result<()> {
         let x = Tensor::rand(&[3, 2, 2], kind);
         let h = Tensor::rand(&[3, 2, 2], kind);
         let output = module.forward_is(&[IValue::Tensor(x), IValue::Tensor(h)])?;
-        dbg!(output);
+        if let IValue::Tensor(t) = output {
+            t.print();
+        }
         /*
         if let IValue::Tuple(mut v) = output {
             if let (Some(IValue::Tensor(a)), Some(IValue::Tensor(b))) = (v.pop(), v.pop()) {
