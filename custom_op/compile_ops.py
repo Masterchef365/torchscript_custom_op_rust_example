@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from setuptools import setup
 from torch.utils.cpp_extension import BuildExtension, CppExtension
 
@@ -9,5 +10,7 @@ setup(
             ["op.cpp"],
         )
     ],
-    cmdclass={"build_ext": BuildExtension.with_options(no_python_abi_suffix=True)},
+    cmdclass={
+        "build_ext": BuildExtension.with_options(no_python_abi_suffix=True)
+    },
 )

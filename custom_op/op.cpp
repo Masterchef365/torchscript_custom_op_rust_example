@@ -13,5 +13,3 @@ torch::Tensor test_op(torch::Tensor blarg, torch::Tensor warg) {
 TORCH_LIBRARY(my_ops, m) {
     m.def("test_op", test_op);
 }
-
-extern "C" void __declspec( dllexport ) test_library() { std::cout << "Custom op loaded" << std::endl; }

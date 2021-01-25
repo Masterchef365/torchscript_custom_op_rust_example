@@ -1,4 +1,5 @@
 build/
 cell.zip
 test_op.egg-info/
-test_op.pyd
+test_op.pydtest_op.so
+test_op.so
