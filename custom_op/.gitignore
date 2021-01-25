@@ -1,2 +1,4 @@
 build/
 cell.zip
+test_op.egg-info/
+test_op.pyd
