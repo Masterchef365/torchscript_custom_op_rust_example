@@ -1,1 +1,1 @@
-python3 compile_ops.py build
+python3 compile_ops.py build develop

@@ -14,3 +14,7 @@
     2. Run `cargo run` to build and run the executor
         * On Windows, make sure to run this in regular PowerShell or Command Prompt; build tools interfere
         * Note that this may not work in release mode at the moment; see [this issue](https://github.com/LaurentMazare/tch-rs/issues/291)
+
+# Notes
+* This kind of sucks
+* In order to get Rust to link with the native library instead of optimizing it away (since we can't yet properly talk to the linker) we have to include a dummy function `test_library` and actually use it from Rust
