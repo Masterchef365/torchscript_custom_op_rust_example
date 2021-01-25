@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "cuda_utils.cuh"
+#include "../cuda_utils.cuh"
 
 /*
   Function: ball query

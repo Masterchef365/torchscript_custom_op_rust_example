@@ -1,13 +1,16 @@
-#include <torch/script.h>
-#include <cstdio>
+#include "ball_query.hpp"
+#include "ball_query.cuh"
 
-#include "op.cuh"
+#include "../utils.hpp"
 
-#include "utils.hpp"
+#ifdef _WIN32
+#include <Python.h>
+PyMODINIT_FUNC PyInit__pvcnn_backend(void) { return NULL; }
+#endif
 
 at::Tensor ball_query_forward(at::Tensor centers_coords,
-                              at::Tensor points_coords, const float radius,
-                              const int num_neighbors) {
+                              at::Tensor points_coords, const double radius,
+                              const int64_t num_neighbors) {
   CHECK_CUDA(centers_coords);
   CHECK_CUDA(points_coords);
   CHECK_CONTIGUOUS(centers_coords);
@@ -30,9 +33,3 @@ at::Tensor ball_query_forward(at::Tensor centers_coords,
 
   return neighbors_indices;
 }
-
-TORCH_LIBRARY(my_ops, m) {
-    m.def("test_op", ball_query_forward);
-}
-
-extern "C" void __declspec( dllexport ) test_library() { std::cout << "Custom op loaded" << std::endl; }

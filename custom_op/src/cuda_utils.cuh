@@ -1,10 +1,8 @@
 #ifndef _CUDA_UTILS_H
 #define _CUDA_UTILS_H
 
-//#include <ATen/ATen.h>
-//#include <ATen/cuda/CUDAContext.h>
-#include <torch/script.h>
-
+#include <ATen/ATen.h>
+#include <ATen/cuda/CUDAContext.h>
 #include <cmath>
 
 #include <cuda.h>
