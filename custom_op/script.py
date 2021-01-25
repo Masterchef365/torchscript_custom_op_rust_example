@@ -1,27 +1,25 @@
 #!/usr/bin/env python3
 import torch
 import platform
-if platform.system() == "Windows":
-    torch.ops.load_library("build\\Release\\test_op.dll")
-else:
-    torch.ops.load_library("build/libtest_op.so")
-
+import sys
+if sys.platform == "linux":
+    torch.ops.load_library("_pvcnn_backend.so")
+elif sys.platform == "win32":
+    torch.ops.load_library("_pvcnn_backend.pyd")
 
 class MyCell(torch.nn.Module):
     def __init__(self):
         super(MyCell, self).__init__()
-        self.linear = torch.nn.Linear(4, 4)
 
     def forward(self, x, h):
-        new_h = torch.tanh(torch.ops.my_ops.test_op(self.linear(x), h))
-        return new_h, new_h
+        return torch.ops._pvcnn_backend.ball_query(x, h, 0.1, 2)
 
 
 my_cell = MyCell()
-x = torch.rand(3, 4)
-h = torch.rand(3, 4)
-traced_cell = torch.jit.trace(my_cell, (x, h))
+centers_coords = torch.rand(3, 2, 2).cuda()
+points_coords = torch.rand(3, 2, 2).cuda()
+traced_cell = torch.jit.trace(my_cell, (centers_coords, points_coords))
 print(traced_cell.code)
-print(traced_cell(x, h))
+print(traced_cell(centers_coords, points_coords))
 traced_cell.save("cell.zip")
 print("Saved successfully")
