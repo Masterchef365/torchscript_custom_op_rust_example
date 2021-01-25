@@ -8,7 +8,10 @@ extern "C" {
 fn main() -> Result<()> {
     unsafe { test_library(); }
     let device = match tch::Cuda::is_available() {
-        true => tch::Device::Cuda(1),
+        true => {
+            println!("Running on GPU!");
+            tch::Device::Cuda(0)
+        },
         false => {
             println!("Warning: Running on CPU");
             tch::Device::Cpu
@@ -17,7 +20,7 @@ fn main() -> Result<()> {
 
     let module = tch::CModule::load_on_device("../custom_op/cell.zip", device)?;
     let kind = (tch::Kind::Float, device);
-    for _ in 0..10_000 {
+    for _ in 0..1000 {
         let x = Tensor::rand(&[3, 2, 2], kind);
         let h = Tensor::rand(&[3, 2, 2], kind);
         let output = module.forward_is(&[IValue::Tensor(x), IValue::Tensor(h)])?;
