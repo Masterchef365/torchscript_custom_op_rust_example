@@ -1,2 +1,8 @@
 build/
 cell.zip
+_pvcnn_backend.pyd
+_pvcnn_backend.so
+check_op.py
+test_op.egg-info/
+test_op.pyd
+cuda_extension.egg-info/
