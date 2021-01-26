@@ -6,3 +6,4 @@ check_op.py
 test_op.egg-info/
 test_op.pyd
 cuda_extension.egg-info/
+build_tmp/
