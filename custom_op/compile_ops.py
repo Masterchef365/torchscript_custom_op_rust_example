@@ -1,5 +1,4 @@
 import os
-_src_path = os.path.dirname(os.path.abspath(__file__))
 from setuptools import setup
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension
 setup(
@@ -7,7 +6,7 @@ setup(
         ext_modules=[
             CUDAExtension(name='_pvcnn_backend',
                 extra_cflags=['-O3', '-std=c++17'],
-                sources=[os.path.join(_src_path,'src', f) for f in [
+                sources=[os.path.join('src', f) for f in [
                     'ball_query/ball_query.cpp',
                     'ball_query/ball_query_kern.cu',
                     #'grouping/grouping.cpp',
